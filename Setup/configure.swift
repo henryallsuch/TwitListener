@@ -29,5 +29,10 @@ public func configure(_ config: inout Config, _ env: inout Environment, _ servic
     var migrations = MigrationConfig()
     migrations.add(model: Todo.self, database: .sqlite)
     services.register(migrations)
+    
+    
+    let consoleKernel = ConsoleKernel()
+    consoleKernel.addCustomCommands()
+    services.register(consoleKernel.commandsConfig())
 
 }
