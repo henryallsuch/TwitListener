@@ -5,9 +5,9 @@ import Vapor
 
 struct StatusCommand: Command {
     
-    var arguments: [CommandArgument]
+    var arguments: [CommandArgument] { return [] }
     
-    var options: [CommandOption]
+    var options: [CommandOption]{ return [] }
     
     var help: [String]{
         return ["Current status of the system"]

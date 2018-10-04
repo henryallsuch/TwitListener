@@ -3,13 +3,12 @@ import Vapor
 
 /// Called before your application initializes.
 public func configure(_ config: inout Config, _ env: inout Environment, _ services: inout Services) throws {
+   
     /// Register providers first
     try services.register(FluentSQLiteProvider())
 
-    /// Register routes to the router
-    let router = EngineRouter.default()
-    try routes(router)
-    services.register(router, as: Router.self)
+    let httpKernel = try HttpKernel()
+    services.register(httpKernel.routerConfig(), as: Router.self)
 
     /// Register middleware
     var middlewares = MiddlewareConfig() // Create _empty_ middleware config
@@ -26,13 +25,11 @@ public func configure(_ config: inout Config, _ env: inout Environment, _ servic
     services.register(databases)
 
     /// Configure migrations
-    var migrations = MigrationConfig()
-    migrations.add(model: Todo.self, database: .sqlite)
+    let migrations = MigrationConfig()
+    //migrations.add(model: Todo.self, database: .sqlite)
     services.register(migrations)
     
-    
     let consoleKernel = ConsoleKernel()
-    consoleKernel.addCustomCommands()
     services.register(consoleKernel.commandsConfig())
 
 }

@@ -7,12 +7,14 @@ class ConsoleKernel {
     init() {
         
         config.useFluentCommands()
+        addCustomCommands()
         
     }
     
     public func addCustomCommands(){
         
-         config.use(StatusCommand(), as: "status")
+       config.use(StatusCommand(), as: "status")
+        
     }
     
     public func commandsConfig() -> CommandConfig {
