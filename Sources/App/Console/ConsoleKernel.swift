@@ -2,23 +2,20 @@ import Vapor
 
 class ConsoleKernel {
     
-    var config = CommandConfig.default()
+    var commands = CommandConfig.default()
     
     init() {
         
-        config.useFluentCommands()
-        addCustomCommands()
+        defaultCommands()
+        commands.useFluentCommands()
+       
+    }
+    
+    public func defaultCommands(){
+        
+       commands.use(StatusCommand(), as: "status")
         
     }
     
-    public func addCustomCommands(){
-        
-       config.use(StatusCommand(), as: "status")
-        
-    }
-    
-    public func commandsConfig() -> CommandConfig {
-        return self.config
-    }
 
 }

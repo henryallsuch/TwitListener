@@ -2,23 +2,23 @@ import Vapor
 
 class HttpKernel {
     
-    let router = EngineRouter.default()
+    var routes = EngineRouter.default()
     
     init() throws {
         
-        try routes()
+        try defaultRoutes()
         
     }
     
-    public func routes() throws {
+    public func defaultRoutes() throws {
         
         // Basic "It works" example
-        router.get { req in
+        routes.get { req in
             return "It works!"
         }
         
         // Basic "Hello, world!" example
-        router.get("hello") { req in
+        routes.get("hello") { req in
             return "Hello, world!"
         }
         
@@ -27,10 +27,6 @@ class HttpKernel {
         // router.get("todos", use: todoController.index)
         // router.post("todos", use: todoController.create)
         // router.delete("todos", Todo.parameter, use: todoController.delete)
-    }
-    
-    public func routerConfig() -> EngineRouter {
-        return self.router
     }
 
 }
