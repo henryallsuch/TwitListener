@@ -1,4 +1,5 @@
 import Vapor
+import FluentSQLite
 
 class ConsoleKernel {
     
@@ -7,6 +8,8 @@ class ConsoleKernel {
     init() {
         
         defaultCommands()
+        
+        //Fluent
         commands.useFluentCommands()
        
     }

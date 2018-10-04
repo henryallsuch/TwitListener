@@ -7,26 +7,29 @@ class WebSocketKernel {
     init() throws {
        
        try defaultSockets()
+    
         
     }
     
     public func defaultSockets() throws {
         
-        server.get("echo") { ws, req in
+        
+        let fileWatcher = LocalFileWatcher()
+        server.get("listen") { ws, req in
             
             ws.onText { ws, text in
                 // Simply echo any received text
                 ws.send(text)
+            
+                fileWatcher.start()
             }
-        }
-        
-        server.get("chat", String.parameter) {
             
-            ws, req in
-            let name = try req.parameters.next(String.self)
-            ws.send("Welcome, \(name)!")
+            
+            
+            
             
         }
+    
         
     }
 

@@ -22,7 +22,6 @@ public func configure(_ config: inout Config, _ env: inout Environment, _ servic
     databases.add(database: sqlite, as: .sqlite)
     services.register(databases)
 
-   
     let migrations = MigrationConfig()
     //migrations.add(model: Todo.self, database: .sqlite)
     services.register(migrations)
