@@ -1,7 +1,4 @@
-
-
 import Vapor
-
 
 struct StatusCommand: Command {
     
