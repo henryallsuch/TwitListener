@@ -1,8 +1,10 @@
 import Vapor
+import KZFileWatchers
 
 class WebSocketKernel {
     
     var server = NIOWebSocketServer.default()
+    let fileWatcher = LocalFileWatcher()
     
     init() throws {
        
@@ -14,20 +16,31 @@ class WebSocketKernel {
     public func defaultSockets() throws {
         
         
-        let fileWatcher = LocalFileWatcher()
+        
         server.get("listen") { ws, req in
             
-            ws.onText { ws, text in
-                // Simply echo any received text
-                ws.send(text)
+//            ws.onText { ws, text in
+//
+//
+//
+//            }
+//
             
-                fileWatcher.start()
-            }
+         
+                
+                self.fileWatcher.start(onChange: {
+                    
+                    (result : String?) in
+                    
+                    ws.send("File Change")
+                    
+                    ws.send(result!)
+
+
+                })
             
-            
-            
-            
-            
+        
+    
         }
     
         

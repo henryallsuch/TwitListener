@@ -3,15 +3,17 @@
 import Foundation
 import KZFileWatchers
 
+
 class LocalFileWatcher {
     
     private var fileWatcher: FileWatcherProtocol?
+    typealias ClosureType = (_ responseData:String?) throws -> Void
     
     init() {
         
     }
     
-    func start(){
+    func start( onChange changeCallback : @escaping ClosureType){
         
         let path = "/Users/saoirse/Desktop/test/file.txt"
         
@@ -23,16 +25,38 @@ class LocalFileWatcher {
         
         fileWatcher = FileWatcher.Local(path: path)
         
-        try! fileWatcher?.start() { result in
-            switch result {
-            case .noChanges:
-                print("no changes")
-                break
-            case .updated(let data):
-                let text = String(data: data, encoding: .utf8)
-                print(text!)
+    
+         do {
+            
+        try fileWatcher?.start(closure: { result in
+            
+            
+            do {
+                
+                switch result {
+                case .noChanges:
+                    print("no cahnges")
+                    break
+                case .updated(let data):
+                    let text = String(data: data, encoding: .utf8)
+                    try changeCallback(text!)
+                    print("tried callback")
+                }
+                
+                
+            } catch {
+                print("failed to call success callback")
+                print(error)
+                
             }
-        }
+            
+        })
+        
+    } catch {
+        print("failed to start listening")
+        print(error)
+    
+    }
         
     }
     
