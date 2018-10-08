@@ -1,5 +1,4 @@
 import Vapor
-import KZFileWatchers
 
 class WebSocketKernel {
     
@@ -16,7 +15,6 @@ class WebSocketKernel {
     public func defaultSockets() throws {
         
         
-        
         server.get("listen") { ws, req in
             
 //            ws.onText { ws, text in
@@ -25,9 +23,7 @@ class WebSocketKernel {
 //
 //            }
 //
-            
-         
-                
+ 
                 self.fileWatcher.start(onChange: {
                     
                     (result : String?) in

@@ -38,6 +38,15 @@
         }
       },
       {
+        "package": "FilesProvider",
+        "repositoryURL": "https://github.com/amosavian/FileProvider.git",
+        "state": {
+          "branch": null,
+          "revision": "e72d7ff088b76204f150d1dce7fa5a83c4ae67ec",
+          "version": "0.25.1"
+        }
+      },
+      {
         "package": "Fluent",
         "repositoryURL": "https://github.com/vapor/fluent.git",
         "state": {
