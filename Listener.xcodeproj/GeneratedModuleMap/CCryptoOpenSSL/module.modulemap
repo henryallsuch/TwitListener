@@ -1,0 +1,4 @@
+module CCryptoOpenSSL {
+    umbrella "/Users/saoirse/Projects/Twit/Frameworks/Listener/.build/checkouts/crypto.git-5677716776874724150/Sources/CCryptoOpenSSL/include"
+    export *
+}
