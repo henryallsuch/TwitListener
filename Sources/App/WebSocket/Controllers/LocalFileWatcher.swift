@@ -2,48 +2,108 @@
 
 import Foundation
 import Vapor
-import FilesProvider
+//import FilesProvider
+
+//class LocalFileWatcher2 {
+//
+//    typealias ClosureType = (_ ws : WebSocket) throws -> Void
+//
+//  //  let sema = DispatchSemaphore( value: 0)
+//
+//    func start(webSocket: WebSocket, onChange changeCallback : @escaping ClosureType){
+//
+//        webSocket.send("Starting listener");
+//
+//        let documentsProvider = LocalFileProvider()
+//        documentsProvider.registerNotifcation(path: "Testing", eventHandler: {
+//
+//            print("files changed")
+//            do {
+//
+//                try changeCallback(webSocket)
+//
+//
+//            } catch {
+//                print("failed to call success callback")
+//                print(error)
+//
+//            }
+//           // self.sema.signal()
+//
+//       })
+//
+//       // sema.wait()
+//
+//    }
+//
+//}
 
 class LocalFileWatcher {
+
+    private var path : NSString
+    private let queue: DispatchQueue
+    private var source: DispatchSourceFileSystemObject?
     
-    typealias ClosureType = (_ responseData:String?) throws -> Void
-    let documentsProvider = LocalFileProvider()
-    
-    func start( onChange changeCallback : @escaping ClosureType){
+    init(_ url: URL) {
         
-        let path = "/Users/saoirse/Desktop/test/"
+        guard FileManager.default.fileExists(atPath: url.path) == true else {
+           
+            fatalError("\(url.path) File does not exist")
         
-        if !FileManager.default.fileExists(atPath: path) {
-            
-            let url = URL(fileURLWithPath: path)
-            try? "Hello daemon world!".data(using: .utf8)?.write(to: url, options: .atomic)
         }
         
-        documentsProvider.registerNotifcation(path: path, eventHandler: {  
-
-            do {
-                
-                try changeCallback("files changed")
-
-//                switch result {
-//                case .noChanges:
-//                    print("no cahnges")
-//                    break
-//                case .updated(let data):
-//                    let text = String(data: data, encoding: .utf8)
-//
-//                    print("tried callback")
-//                }
-
-
-            } catch {
-                print("failed to call success callback")
-                print(error)
-
-            }
-            
-       })
+        path = (url.path as NSString)
         
+        self.queue = DispatchQueue(label: "io.twit.listener")
     }
     
+    func start(closure: @escaping () -> Void) {
+        // We can only convert an NSString into a file system representation
+     
+        let fileSystemRepresentation = path.fileSystemRepresentation
+        
+        // Obtain a descriptor from the file system
+        let fileDescriptor = open(fileSystemRepresentation, O_EVTONLY)
+        
+         guard fileDescriptor != -1 else {
+            
+             fatalError(String(utf8String: strerror(errno)) ?? "Unknown error code")
+            
+        }
+        
+        // Create our dispatch source
+        let source = DispatchSource.makeFileSystemObjectSource(
+            fileDescriptor: fileDescriptor,
+            eventMask: .all,
+            queue: self.queue
+        )
+        
+        
+        source.setEventHandler {
+            [weak self] in
+            self?.printTime(withComment: "File event");
+            closure()
+        }
+        
+
+        source.setCancelHandler() {
+            close(fileDescriptor)
+        }
+        
+        
+       // source.setEventHandler(handler: DispatchWorkItem)
+        source.resume()
+        self.printTime(withComment: "Resuming Watch on \(path)");
+        
+        self.source = source
+    }
+    
+    func printTime(withComment comment: String){
+        let date = Date()
+        let formatter = DateFormatter()
+        
+        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        
+        print(comment + ": " + formatter.string(from: date))
+    }
 }

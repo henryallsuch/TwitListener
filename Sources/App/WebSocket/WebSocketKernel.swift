@@ -3,42 +3,49 @@ import Vapor
 class WebSocketKernel {
     
     var server = NIOWebSocketServer.default()
-    let fileWatcher = LocalFileWatcher()
+    let fileWatcher = LocalFileWatcher(URL(fileURLWithPath:"/Users/saoirse/Documents/Testing/"))
+    var currentWebSocket : WebSocket?
     
     init() throws {
        
        try defaultSockets()
-    
+        
+        fileWatcher.start(closure: self.handleFileChange)
         
     }
     
     public func defaultSockets() throws {
         
         
-        server.get("listen") { ws, req in
+        server.get("listen") { webSocket, request in
             
-//            ws.onText { ws, text in
-//
-//
-//
-//            }
-//
- 
-                self.fileWatcher.start(onChange: {
-                    
-                    (result : String?) in
-                    
-                    ws.send("File Change")
-                    
-                    ws.send(result!)
-
-
-                })
+            self.currentWebSocket = webSocket
             
-        
+            webSocket.onText { webSocket, text in
+
+                self.printTime(withComment: text)
+
+            }
+            
+            
     
         }
     
+        
+    }
+    
+    func printTime(withComment comment: String){
+        let date = Date()
+        let formatter = DateFormatter()
+        
+        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        
+        print(comment + ": " + formatter.string(from: date))
+    }
+    
+    func handleFileChange(){
+        
+        currentWebSocket?.send("file change")
         
     }
 
