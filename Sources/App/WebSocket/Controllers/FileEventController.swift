@@ -7,7 +7,7 @@ class FileEventController : WebsocketCollection  {
     var currentWebSocket : WebSocket?
     
     func boot(server: NIOWebSocketServer) throws {
-        server.get("events", use: websocketHandler)
+        server.get("listen", use: websocketHandler)
     }
     
     func websocketHandler(webSocket: WebSocket, request :Request) throws -> ()  {

@@ -25,6 +25,8 @@
 		1A07BA952172940100CAE4FF /* StatusController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A07BA92217290EE00CAE4FF /* StatusController.swift */; };
 		1A07BA972172987200CAE4FF /* FileEventController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A07BA962172987200CAE4FF /* FileEventController.swift */; };
 		1A07BA982172987200CAE4FF /* FileEventController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A07BA962172987200CAE4FF /* FileEventController.swift */; };
+		1A07BA992172B30500CAE4FF /* LocalFileWatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_19 /* LocalFileWatcher.swift */; };
+		1A07BA9A2172B30A00CAE4FF /* WebSocketKernel.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_20 /* WebSocketKernel.swift */; };
 		OBJ_1000 /* DatabaseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "DatabaseKit::DatabaseKit::Product" /* DatabaseKit.framework */; };
 		OBJ_1001 /* Command.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Console::Command::Product" /* Command.framework */; };
 		OBJ_1002 /* Console.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Console::Console::Product" /* Console.framework */; };
@@ -11609,7 +11611,9 @@
 			buildActionMask = 0;
 			files = (
 				OBJ_2411 /* main.swift in Sources */,
+				1A07BA9A2172B30A00CAE4FF /* WebSocketKernel.swift in Sources */,
 				1A07BA93217290EE00CAE4FF /* StatusController.swift in Sources */,
+				1A07BA992172B30500CAE4FF /* LocalFileWatcher.swift in Sources */,
 				1A07BA982172987200CAE4FF /* FileEventController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
