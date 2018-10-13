@@ -21,6 +21,8 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		1A07BA93217290EE00CAE4FF /* StatusController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A07BA92217290EE00CAE4FF /* StatusController.swift */; };
+		1A07BA952172940100CAE4FF /* StatusController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A07BA92217290EE00CAE4FF /* StatusController.swift */; };
 		OBJ_1000 /* DatabaseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "DatabaseKit::DatabaseKit::Product" /* DatabaseKit.framework */; };
 		OBJ_1001 /* Command.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Console::Command::Product" /* Command.framework */; };
 		OBJ_1002 /* Console.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Console::Console::Product" /* Console.framework */; };
@@ -5134,6 +5136,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1A07BA92217290EE00CAE4FF /* StatusController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = StatusController.swift; path = "Sources/App/Http/New Group/Api/StatusController.swift"; sourceTree = SOURCE_ROOT; };
 		"Console::Command::Product" /* Command.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Command.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		"Console::Console::Product" /* Console.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Console.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		"Console::Logging::Product" /* Logging.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Logging.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -6786,6 +6789,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1A07BA91217290B200CAE4FF /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				1A07BA942172939000CAE4FF /* Api */,
+			);
+			name = Controllers;
+			path = "New Group";
+			sourceTree = "<group>";
+		};
+		1A07BA942172939000CAE4FF /* Api */ = {
+			isa = PBXGroup;
+			children = (
+				1A07BA92217290EE00CAE4FF /* StatusController.swift */,
+			);
+			path = Api;
+			sourceTree = "<group>";
+		};
 		OBJ_10 /* App */ = {
 			isa = PBXGroup;
 			children = (
@@ -6945,6 +6965,7 @@
 		OBJ_15 /* Http */ = {
 			isa = PBXGroup;
 			children = (
+				1A07BA91217290B200CAE4FF /* Controllers */,
 				OBJ_16 /* HttpKernel.swift */,
 			);
 			path = Http;
@@ -7848,7 +7869,7 @@
 			path = Message;
 			sourceTree = "<group>";
 		};
-		OBJ_5 /*  */ = {
+		OBJ_5 = {
 			isa = PBXGroup;
 			children = (
 				OBJ_6 /* Package.swift */,
@@ -7858,7 +7879,6 @@
 				OBJ_28 /* Dependencies */,
 				OBJ_913 /* Products */,
 			);
-			name = "";
 			sourceTree = "<group>";
 		};
 		OBJ_504 /* Responder */ = {
@@ -10740,7 +10760,7 @@
 			knownRegions = (
 				en,
 			);
-			mainGroup = OBJ_5 /*  */;
+			mainGroup = OBJ_5;
 			productRefGroup = OBJ_913 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -11585,6 +11605,7 @@
 			buildActionMask = 0;
 			files = (
 				OBJ_2411 /* main.swift in Sources */,
+				1A07BA93217290EE00CAE4FF /* StatusController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -11991,6 +12012,7 @@
 				OBJ_970 /* WebSocketKernel.swift in Sources */,
 				OBJ_971 /* app.swift in Sources */,
 				OBJ_972 /* boot.swift in Sources */,
+				1A07BA952172940100CAE4FF /* StatusController.swift in Sources */,
 				OBJ_973 /* configure.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

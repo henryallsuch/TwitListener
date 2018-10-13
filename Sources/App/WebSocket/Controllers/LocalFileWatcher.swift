@@ -1,42 +1,5 @@
-
-
 import Foundation
 import Vapor
-//import FilesProvider
-
-//class LocalFileWatcher2 {
-//
-//    typealias ClosureType = (_ ws : WebSocket) throws -> Void
-//
-//  //  let sema = DispatchSemaphore( value: 0)
-//
-//    func start(webSocket: WebSocket, onChange changeCallback : @escaping ClosureType){
-//
-//        webSocket.send("Starting listener");
-//
-//        let documentsProvider = LocalFileProvider()
-//        documentsProvider.registerNotifcation(path: "Testing", eventHandler: {
-//
-//            print("files changed")
-//            do {
-//
-//                try changeCallback(webSocket)
-//
-//
-//            } catch {
-//                print("failed to call success callback")
-//                print(error)
-//
-//            }
-//           // self.sema.signal()
-//
-//       })
-//
-//       // sema.wait()
-//
-//    }
-//
-//}
 
 class LocalFileWatcher {
 
