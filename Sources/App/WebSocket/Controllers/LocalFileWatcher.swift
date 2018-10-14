@@ -40,23 +40,23 @@ class LocalFileWatcher {
         
         source.setEventHandler {
            // [weak self] in
-            print("File event");
+            print("File system event");
             closure()
         }
         
 
         source.setCancelHandler() {
+            print("stopped watching \(self.path)");
             close(fileDescriptor)
         }
         
         source.resume()
-        print("watching \(path)");
+        print("started watching \(path)");
         
         self.source = source
     }
     
     func stop(){
-        
         source?.cancel()
     }
     

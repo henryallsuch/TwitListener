@@ -21,6 +21,7 @@ class WebSocketKernel {
 }
 
 
+// add the ability to register collections of websockets like we do with http
 public protocol WebsocketCollection {
     func boot(server: NIOWebSocketServer) throws
 }

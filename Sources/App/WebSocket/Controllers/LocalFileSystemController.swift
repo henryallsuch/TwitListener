@@ -2,20 +2,22 @@
 import Vapor
 
 class LocalFileSystemController : WebsocketCollection  {
-
-    var fileWatcher : LocalFileWatcher? = nil
     
+    let directoryPath : String = "/Users/saoirse/Documents/Testing/"
+    
+    var fileWatcher : LocalFileWatcher? = nil
     var currentWebSocket : WebSocket?
     
     func boot(server: NIOWebSocketServer) throws {
         
+        // wsta ws://localhost:8080/listen
         server.get("listen", use: fileSystemEventWebsocketInit)
         
     }
     
     func fileSystemEventWebsocketInit(webSocket: WebSocket, request :Request) throws -> ()  {
         
-        fileWatcher = LocalFileWatcher(URL(fileURLWithPath:"/Users/saoirse/Documents/Testing/"))
+        fileWatcher = LocalFileWatcher(URL(fileURLWithPath:directoryPath))
         fileWatcher?.start(closure: self.fileSystemEventHandler)
         
         currentWebSocket = webSocket
@@ -45,7 +47,7 @@ class LocalFileSystemController : WebsocketCollection  {
     
     func fileSystemEventHandler(){
         
-        currentWebSocket?.send("File System Event")
+        currentWebSocket?.send("File system event")
         
     }
     
