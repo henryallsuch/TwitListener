@@ -23,8 +23,8 @@
 /* Begin PBXBuildFile section */
 		1A07BA93217290EE00CAE4FF /* StatusController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A07BA92217290EE00CAE4FF /* StatusController.swift */; };
 		1A07BA952172940100CAE4FF /* StatusController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A07BA92217290EE00CAE4FF /* StatusController.swift */; };
-		1A07BA972172987200CAE4FF /* FileEventController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A07BA962172987200CAE4FF /* FileEventController.swift */; };
-		1A07BA982172987200CAE4FF /* FileEventController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A07BA962172987200CAE4FF /* FileEventController.swift */; };
+		1A07BA972172987200CAE4FF /* LocalFileSystemController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A07BA962172987200CAE4FF /* LocalFileSystemController.swift */; };
+		1A07BA982172987200CAE4FF /* LocalFileSystemController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A07BA962172987200CAE4FF /* LocalFileSystemController.swift */; };
 		1A07BA992172B30500CAE4FF /* LocalFileWatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_19 /* LocalFileWatcher.swift */; };
 		1A07BA9A2172B30A00CAE4FF /* WebSocketKernel.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_20 /* WebSocketKernel.swift */; };
 		OBJ_1000 /* DatabaseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "DatabaseKit::DatabaseKit::Product" /* DatabaseKit.framework */; };
@@ -5141,7 +5141,7 @@
 
 /* Begin PBXFileReference section */
 		1A07BA92217290EE00CAE4FF /* StatusController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = StatusController.swift; path = "Sources/App/Http/New Group/Api/StatusController.swift"; sourceTree = SOURCE_ROOT; };
-		1A07BA962172987200CAE4FF /* FileEventController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileEventController.swift; sourceTree = "<group>"; };
+		1A07BA962172987200CAE4FF /* LocalFileSystemController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalFileSystemController.swift; sourceTree = "<group>"; };
 		"Console::Command::Product" /* Command.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Command.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		"Console::Console::Product" /* Console.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Console.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		"Console::Logging::Product" /* Logging.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Logging.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -7050,7 +7050,7 @@
 			isa = PBXGroup;
 			children = (
 				OBJ_19 /* LocalFileWatcher.swift */,
-				1A07BA962172987200CAE4FF /* FileEventController.swift */,
+				1A07BA962172987200CAE4FF /* LocalFileSystemController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -11614,7 +11614,7 @@
 				1A07BA9A2172B30A00CAE4FF /* WebSocketKernel.swift in Sources */,
 				1A07BA93217290EE00CAE4FF /* StatusController.swift in Sources */,
 				1A07BA992172B30500CAE4FF /* LocalFileWatcher.swift in Sources */,
-				1A07BA982172987200CAE4FF /* FileEventController.swift in Sources */,
+				1A07BA982172987200CAE4FF /* LocalFileSystemController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -12020,7 +12020,7 @@
 				OBJ_969 /* LocalFileWatcher.swift in Sources */,
 				OBJ_970 /* WebSocketKernel.swift in Sources */,
 				OBJ_971 /* app.swift in Sources */,
-				1A07BA972172987200CAE4FF /* FileEventController.swift in Sources */,
+				1A07BA972172987200CAE4FF /* LocalFileSystemController.swift in Sources */,
 				OBJ_972 /* boot.swift in Sources */,
 				1A07BA952172940100CAE4FF /* StatusController.swift in Sources */,
 				OBJ_973 /* configure.swift in Sources */,

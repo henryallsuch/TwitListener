@@ -1,8 +1,8 @@
 import Foundation
-import Vapor
 
 class LocalFileWatcher {
 
+    private let queueLabel :String = "io.twit.listener"
     private var path : NSString
     private let queue: DispatchQueue
     private var source: DispatchSourceFileSystemObject?
@@ -17,16 +17,12 @@ class LocalFileWatcher {
         
         path = (url.path as NSString)
         
-        self.queue = DispatchQueue(label: "io.twit.listener")
+        self.queue = DispatchQueue(label: queueLabel)
     }
     
     func start(closure: @escaping () -> Void) {
-        // We can only convert an NSString into a file system representation
-     
-        let fileSystemRepresentation = path.fileSystemRepresentation
         
-        // Obtain a descriptor from the file system
-        let fileDescriptor = open(fileSystemRepresentation, O_EVTONLY)
+        let fileDescriptor = open(path.fileSystemRepresentation, O_EVTONLY)
         
          guard fileDescriptor != -1 else {
             
@@ -43,8 +39,8 @@ class LocalFileWatcher {
         
         
         source.setEventHandler {
-            [weak self] in
-            self?.printTime(withComment: "File event");
+           // [weak self] in
+            print("File event");
             closure()
         }
         
@@ -53,20 +49,15 @@ class LocalFileWatcher {
             close(fileDescriptor)
         }
         
-        
-       // source.setEventHandler(handler: DispatchWorkItem)
         source.resume()
-        self.printTime(withComment: "Resuming Watch on \(path)");
+        print("watching \(path)");
         
         self.source = source
     }
     
-    func printTime(withComment comment: String){
-        let date = Date()
-        let formatter = DateFormatter()
+    func stop(){
         
-        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        
-        print(comment + ": " + formatter.string(from: date))
+        source?.cancel()
     }
+    
 }

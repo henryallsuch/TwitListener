@@ -12,11 +12,10 @@ class WebSocketKernel {
     
     public func defaultSockets() throws {
         
-        let fileEventController = FileEventController()
+        let localfileSystemController = LocalFileSystemController()
         
-        try server.register(collection: fileEventController)
+        try server.register(collection: localfileSystemController)
         
-    
     }
     
 }
