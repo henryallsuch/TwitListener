@@ -26,6 +26,14 @@
 		1A07BA992172B30500CAE4FF /* LocalFileWatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_19 /* LocalFileWatcher.swift */; };
 		1A07BA9A2172B30A00CAE4FF /* WebSocketKernel.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_20 /* WebSocketKernel.swift */; };
 		1A5065172179306300CD4C45 /* StatusController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A5065162179306300CD4C45 /* StatusController.swift */; };
+		1AE6E9A9217E706900827557 /* WebsocketChannelRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AE6E9A8217E706900827557 /* WebsocketChannelRepository.swift */; };
+		1AE6E9AB217E79AA00827557 /* WebsocketEventRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AE6E9AA217E79AA00827557 /* WebsocketEventRepository.swift */; };
+		1AE6E9AC217E79AA00827557 /* WebsocketEventRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AE6E9AA217E79AA00827557 /* WebsocketEventRepository.swift */; };
+		1AE6E9AD217E79C200827557 /* WebsocketChannelRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AE6E9A8217E706900827557 /* WebsocketChannelRepository.swift */; };
+		1AE6E9B1217E7ABF00827557 /* WebsocketEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AE6E9B0217E7ABF00827557 /* WebsocketEvent.swift */; };
+		1AE6E9B2217E7ABF00827557 /* WebsocketEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AE6E9B0217E7ABF00827557 /* WebsocketEvent.swift */; };
+		1AE6E9B4217E7ADF00827557 /* WebsocketChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AE6E9B3217E7ADF00827557 /* WebsocketChannel.swift */; };
+		1AE6E9B5217E7ADF00827557 /* WebsocketChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AE6E9B3217E7ADF00827557 /* WebsocketChannel.swift */; };
 		OBJ_1000 /* DatabaseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "DatabaseKit::DatabaseKit::Product" /* DatabaseKit.framework */; };
 		OBJ_1001 /* Command.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Console::Command::Product" /* Command.framework */; };
 		OBJ_1002 /* Console.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Console::Console::Product" /* Console.framework */; };
@@ -5141,6 +5149,10 @@
 /* Begin PBXFileReference section */
 		1A07BA962172987200CAE4FF /* LocalFileSystemController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalFileSystemController.swift; sourceTree = "<group>"; };
 		1A5065162179306300CD4C45 /* StatusController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StatusController.swift; path = "Sources/App/Http/New Group/Api/StatusController.swift"; sourceTree = SOURCE_ROOT; };
+		1AE6E9A8217E706900827557 /* WebsocketChannelRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebsocketChannelRepository.swift; sourceTree = "<group>"; };
+		1AE6E9AA217E79AA00827557 /* WebsocketEventRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebsocketEventRepository.swift; sourceTree = "<group>"; };
+		1AE6E9B0217E7ABF00827557 /* WebsocketEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebsocketEvent.swift; sourceTree = "<group>"; };
+		1AE6E9B3217E7ADF00827557 /* WebsocketChannel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebsocketChannel.swift; sourceTree = "<group>"; };
 		"Console::Command::Product" /* Command.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Command.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		"Console::Console::Product" /* Console.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Console.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		"Console::Logging::Product" /* Logging.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Logging.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -6810,6 +6822,24 @@
 			path = Api;
 			sourceTree = "<group>";
 		};
+		1AE6E9AE217E7A6D00827557 /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				1AE6E9AA217E79AA00827557 /* WebsocketEventRepository.swift */,
+				1AE6E9A8217E706900827557 /* WebsocketChannelRepository.swift */,
+			);
+			path = Repositories;
+			sourceTree = "<group>";
+		};
+		1AE6E9AF217E7AAE00827557 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				1AE6E9B0217E7ABF00827557 /* WebsocketEvent.swift */,
+				1AE6E9B3217E7ADF00827557 /* WebsocketChannel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		OBJ_10 /* App */ = {
 			isa = PBXGroup;
 			children = (
@@ -7014,6 +7044,8 @@
 		OBJ_17 /* WebSocket */ = {
 			isa = PBXGroup;
 			children = (
+				1AE6E9AF217E7AAE00827557 /* Models */,
+				1AE6E9AE217E7A6D00827557 /* Repositories */,
 				OBJ_18 /* Controllers */,
 				OBJ_20 /* WebSocketKernel.swift */,
 			);
@@ -11610,8 +11642,12 @@
 			buildActionMask = 0;
 			files = (
 				OBJ_2411 /* main.swift in Sources */,
+				1AE6E9B5217E7ADF00827557 /* WebsocketChannel.swift in Sources */,
+				1AE6E9AC217E79AA00827557 /* WebsocketEventRepository.swift in Sources */,
 				1A07BA9A2172B30A00CAE4FF /* WebSocketKernel.swift in Sources */,
 				1A07BA992172B30500CAE4FF /* LocalFileWatcher.swift in Sources */,
+				1AE6E9AD217E79C200827557 /* WebsocketChannelRepository.swift in Sources */,
+				1AE6E9B2217E7ABF00827557 /* WebsocketEvent.swift in Sources */,
 				1A07BA982172987200CAE4FF /* LocalFileSystemController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -12013,14 +12049,18 @@
 			buildActionMask = 0;
 			files = (
 				OBJ_966 /* StatusCommand.swift in Sources */,
+				1AE6E9B4217E7ADF00827557 /* WebsocketChannel.swift in Sources */,
 				OBJ_967 /* ConsoleKernel.swift in Sources */,
 				OBJ_968 /* HttpKernel.swift in Sources */,
 				OBJ_969 /* LocalFileWatcher.swift in Sources */,
 				OBJ_970 /* WebSocketKernel.swift in Sources */,
+				1AE6E9A9217E706900827557 /* WebsocketChannelRepository.swift in Sources */,
 				OBJ_971 /* app.swift in Sources */,
 				1A07BA972172987200CAE4FF /* LocalFileSystemController.swift in Sources */,
 				OBJ_972 /* boot.swift in Sources */,
 				1A5065172179306300CD4C45 /* StatusController.swift in Sources */,
+				1AE6E9AB217E79AA00827557 /* WebsocketEventRepository.swift in Sources */,
+				1AE6E9B1217E7ABF00827557 /* WebsocketEvent.swift in Sources */,
 				OBJ_973 /* configure.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
