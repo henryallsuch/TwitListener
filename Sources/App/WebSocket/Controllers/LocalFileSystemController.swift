@@ -52,13 +52,14 @@ class LocalFileSystemController : WebsocketCollection  {
         currentWebSocket?.send("File system event")
         
         do {
-            let output = try shellOut(to: "ls -lsa", at: self.directoryPath)
+            
+            let output = try shellOut(to: "git status --porcelain=v2 --branch", at: self.directoryPath)
             currentWebSocket?.send(output)
             
         } catch {
             let error = error as! ShellOutError
-            print(error.message) // Prints STDERR
-            print(error.output) // Prints STDOUT
+            print(error.message)
+            print(error.output)
         }
         
         
