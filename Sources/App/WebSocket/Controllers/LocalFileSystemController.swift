@@ -1,5 +1,6 @@
 
 import Vapor
+import ShellOut
 
 class LocalFileSystemController : WebsocketCollection  {
     
@@ -47,7 +48,19 @@ class LocalFileSystemController : WebsocketCollection  {
     
     func fileSystemEventHandler(){
         
+        
         currentWebSocket?.send("File system event")
+        
+        do {
+            let output = try shellOut(to: "ls -lsa", at: self.directoryPath)
+            currentWebSocket?.send(output)
+            
+        } catch {
+            let error = error as! ShellOutError
+            print(error.message) // Prints STDERR
+            print(error.output) // Prints STDOUT
+        }
+        
         
     }
     
