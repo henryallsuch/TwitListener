@@ -3,21 +3,20 @@
 
 ## Install
 
+If Homebrew isn't installed
+```
+/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 ```
 
-# if homebrew isn't installed
-
-/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-
-#if vapor isn't installed
-
+If Vapor isn't installed
+```
 brew install vapor/tap/vapor
+```
 
-#install dependencies
+Install dependencies
 
+```
 vapor update
-
-
 ```
 
 ## Build & Run
@@ -25,5 +24,4 @@ vapor update
 ```
 vapor build
 vapor run
-
 ```
