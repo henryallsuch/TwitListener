@@ -3,9 +3,9 @@ import Foundation
 class LocalFileWatcher {
 
     private let queueLabel :String = "io.twit.listener"
-    private var path : NSString
     private let queue: DispatchQueue
-    private var source: DispatchSourceFileSystemObject?
+    private var watchLocationUrl : NSString
+    private var watcher: DispatchSourceFileSystemObject?
     
     init(_ url: URL) {
         
@@ -15,14 +15,14 @@ class LocalFileWatcher {
         
         }
         
-        path = (url.path as NSString)
+        watchLocationUrl = (url.path as NSString)
         
         self.queue = DispatchQueue(label: queueLabel)
     }
     
     func start(closure: @escaping () -> Void) {
         
-        let fileDescriptor = open(path.fileSystemRepresentation, O_EVTONLY)
+        let fileDescriptor = open(watchLocationUrl.fileSystemRepresentation, O_EVTONLY)
         
          guard fileDescriptor != -1 else {
             
@@ -30,34 +30,31 @@ class LocalFileWatcher {
             
         }
         
-        // Create our dispatch source
-        let source = DispatchSource.makeFileSystemObjectSource(
+        let watcher = DispatchSource.makeFileSystemObjectSource(
             fileDescriptor: fileDescriptor,
             eventMask: .all,
             queue: self.queue
         )
         
-        
-        source.setEventHandler {
+        watcher.setEventHandler {
            // [weak self] in
             print("File system event");
             closure()
         }
         
-
-        source.setCancelHandler() {
-            print("stopped watching \(self.path)");
+        watcher.setCancelHandler() {
+            print("stopped watching \(self.watchLocationUrl)");
             close(fileDescriptor)
         }
         
-        source.resume()
-        print("started watching \(path)");
+        watcher.resume()
+        print("started watching \(watchLocationUrl)");
         
-        self.source = source
+        self.watcher = watcher
     }
     
     func stop(){
-        source?.cancel()
+        watcher?.cancel()
     }
     
 }

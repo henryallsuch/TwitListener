@@ -2,6 +2,19 @@ import FluentSQLite
 import Vapor
 
 public func configure(_ config: inout Config, _ env: inout Environment, _ services: inout Services) throws {
+    
+    if env == .development {
+        services.register(Server.self) { container -> NIOServer in
+            var serverConfig = try container.make() as NIOServerConfig
+            serverConfig.port = 8989
+            serverConfig.hostname = "10.219.134.24"
+            let server = NIOServer(
+                config: serverConfig,
+                container: container
+            )
+            return server
+        }
+    }
    
     try services.register(FluentSQLiteProvider())
 

@@ -12,12 +12,13 @@ class LocalFileSystemController : WebsocketCollection  {
     func boot(server: NIOWebSocketServer) throws {
         
         // wsta ws://localhost:8080/listen
-        server.get("listen", use: fileSystemEventWebsocketInit)
+        server.get("/listen", use: fileSystemEventWebsocketInit)
         
     }
     
     func fileSystemEventWebsocketInit(webSocket: WebSocket, request :Request) throws -> ()  {
         
+        //fileWatcher = LocalFileWatcher(URL(fileURLWithPath:directoryPath + "test.json"))
         fileWatcher = LocalFileWatcher(URL(fileURLWithPath:directoryPath))
         fileWatcher?.start(closure: self.fileSystemEventHandler)
         
@@ -55,6 +56,9 @@ class LocalFileSystemController : WebsocketCollection  {
             
             let output = try shellOut(to: "git status --porcelain=v2 --branch", at: self.directoryPath)
             currentWebSocket?.send(output)
+            
+           // let diffOutput = try shellOut(to: "git diff test.json", at: self.directoryPath)
+           // currentWebSocket?.send(diffOutput)
             
         } catch {
             let error = error as! ShellOutError
